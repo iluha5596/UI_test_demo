@@ -1,0 +1,15 @@
+{
+    "logins": {
+        "non_valid_login1": "user1",
+        "non_valid_login2": "",
+        "non_valid_login3": " ",
+        "non_valid_login4": "mail@mail.ru",
+        "valid_login": "pantik96@mail.ru"
+    },
+    "passwords": {
+        "non_valid_pass1": "123",
+        "non_valid_pass2": "",
+        "non_valid_pass3": " ",
+        "valid_pass": "2MM8NTq4u_CUQm8"
+    }
+}
