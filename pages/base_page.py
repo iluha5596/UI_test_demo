@@ -12,7 +12,7 @@ class BasePage(object):
         self.driver.get(self.url)
 
     def find_element(self, how, what):
-        return self.driver.findelement(how, what)
+        return self.driver.find_element(how, what)
 
     def visibility_of_element_locator(self, how, what, timeout=10):
         return wait(self.driver, timeout).until(EC.visibility_of_element_located((how, what)))

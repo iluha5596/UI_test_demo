@@ -1,15 +1,25 @@
 {
-    "logins": {
-        "non_valid_login1": "user1",
-        "non_valid_login2": "",
-        "non_valid_login3": " ",
-        "non_valid_login4": "mail@mail.ru",
+    "logins_non_valid": {
+        "non_valid_login": "user1"
+    },
+    "login_empty": {
+        "empty_login2": " "
+    },
+    "login_valid": {
         "valid_login": "pantik96@mail.ru"
     },
-    "passwords": {
+    "logins_non_pass": {
+        "non_pass_login1": "mail@mail.ru",
+        "non_pass_login2": "test@mail.com"
+    },
+    "password_empty": {
+        "non_valid_pass2": " "
+    },
+    "passwords_non_pass": {
         "non_valid_pass1": "123",
-        "non_valid_pass2": "",
-        "non_valid_pass3": " ",
+        "non_valid_pass2": "qwerty123"
+    },
+    "password_valid": {
         "valid_pass": "2MM8NTq4u_CUQm8"
     }
 }

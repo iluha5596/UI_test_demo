@@ -6,3 +6,7 @@ class LoginPanel(BasePage):
 
     def click_sign_in(self):
         self.element_is_clickable(*PanelLogin.SIGN_IN).click()
+
+    def checking_user_authorization(self):
+        user_authorization_element = self.find_element(*PanelLogin.LOGIN_IN)
+        assert user_authorization_element.is_displayed(), 'Авторизация не прошла'

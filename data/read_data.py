@@ -15,6 +15,8 @@ class ReadData:
 class LoginPageData(ReadData):
     def __init__(self, file_path):
         super().__init__(file_path)
-        self.logins = self.file_data['logins']
-        self.passwords = self.file_data['passwords']
+        self.logins_non_pass = self.file_data['logins_non_pass']
+        self.passwords_non_pass = self.file_data['passwords_non_pass']
+        self.login_valid = self.file_data['login_valid']
+        self.password_valid = self.file_data['password_valid']
 
