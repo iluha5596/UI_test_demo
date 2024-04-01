@@ -1,9 +1,10 @@
 {
     "logins_non_valid": {
-        "non_valid_login": "user1"
-    },
-    "login_empty": {
-        "empty_login2": " "
+        "non_valid_login1": "test",
+        "non_valid_login2": "@mail.com",
+        "non_valid_login3": "test@.ru",
+        "non_valid_login4": "test@mail.",
+        "non_valid_login5": "test@mail.c"
     },
     "login_valid": {
         "valid_login": "pantik96@mail.ru"
@@ -11,9 +12,6 @@
     "logins_non_pass": {
         "non_pass_login1": "mail@mail.ru",
         "non_pass_login2": "test@mail.com"
-    },
-    "password_empty": {
-        "non_valid_pass2": " "
     },
     "passwords_non_pass": {
         "non_valid_pass1": "123",

@@ -19,4 +19,5 @@ class LoginPageData(ReadData):
         self.passwords_non_pass = self.file_data['passwords_non_pass']
         self.login_valid = self.file_data['login_valid']
         self.password_valid = self.file_data['password_valid']
+        self.logins_non_valid = self.file_data['logins_non_valid']
 
