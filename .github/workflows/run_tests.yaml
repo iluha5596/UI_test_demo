@@ -33,7 +33,8 @@ jobs:
       - name: regression_test
         if: "github.event.inputs.deployment_target == 'regression_test'"
         run: pytest -s -v
-      - name: Upload screenshots as artifacts
+      - name: Save screenshots as artifacts
+        if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: screenshots
