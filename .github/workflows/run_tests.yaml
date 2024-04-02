@@ -35,9 +35,9 @@ jobs:
       - name: install dependencies
         run: pip install -r requirements.txt
 # Команда по запуску теста
-      - name: first_test
+      - name: smoke_test
         if: "github.event.inputs.deployment_target == 'smoke_test'"
         run: pytest -s -v -m smoke
-      - name: second_test
+      - name: regression_test
         if: "github.event.inputs.deployment_target == 'regression_test'"
         run: pytest -s -v
