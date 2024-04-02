@@ -38,5 +38,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: screenshots
-          path: ${{ 'screenshot_' + item.name | replace(' ', '_') }}.png
+          path: ${{ github.event.inputs.deployment_target }}.png
 
