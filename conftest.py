@@ -22,6 +22,6 @@ def pytest_runtest_makereport(item, call):
             driver = item.funcargs['driver']
         except KeyError:
             return
-        screenshot_path = f"screenshot_failed_test/screenshot_{item.name}.png"
+        screenshot_path = f"screenshot_{item.name}.png"
         driver.save_screenshot(screenshot_path)
         print(f"\nScreenshot saved as {screenshot_path}")
