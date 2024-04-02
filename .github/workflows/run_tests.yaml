@@ -1,0 +1,43 @@
+name: Automation tests for magento.softwaretestingboard.com
+
+# В какой ситуации запускается тест
+on:
+# Ручной запуск автотестов
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Choose target
+        required: true
+        default:
+        type: choice
+        options:
+          - smoke_test
+          - regression_test
+
+jobs:
+  test:
+# Какая ОС будет установлена в на виртуальной машине
+    runs-on: ubuntu-latest
+
+    steps:
+# Необходимо скачать репозиторий
+      - name: Checkout repository
+        uses: actions/checkout@v3
+# Установка питона версии 3.10
+      - name: setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+# Установка хрома
+      - name: Install Chrome
+        run: sudo apt-get install google-chrome-stable
+# Установка всех зависимостей из файла requirements.txt
+      - name: install dependencies
+        run: pip install -r requirements.txt
+# Команда по запуску теста
+      - name: first_test
+        if: "github.event.inputs.deployment_target == 'smoke_test'"
+        run: pytest -s -v -m smoke
+      - name: second_test
+        if: "github.event.inputs.deployment_target == 'regression_test'"
+        run: pytest -s -v
