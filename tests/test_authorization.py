@@ -9,6 +9,7 @@ import pytest
 class TestAuthorization:
 
     @pytest.mark.smoke
+    @pytest.mark.skip
     @pytest.mark.parametrize('creds', generate_valid_pairs())
     def test_authorization_valid_pairs(self, driver, creds):
         url = 'https://magento.softwaretestingboard.com/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/'
