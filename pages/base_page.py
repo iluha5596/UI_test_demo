@@ -14,8 +14,11 @@ class BasePage(object):
     def find_element(self, how, what):
         return self.driver.find_element(how, what)
 
-    def visibility_of_element_locator(self, how, what, timeout=20):
+    def find_elements(self, how, what):
+        return self.driver.find_elements(how, what)
+
+    def visibility_of_element_locator(self, how, what, timeout=5):
         return wait(self.driver, timeout).until(EC.visibility_of_element_located((how, what)))
 
-    def element_is_clickable(self, how, what, timeout=20):
+    def element_is_clickable(self, how, what, timeout=5):
         return wait(self.driver, timeout).until(EC.element_to_be_clickable((how, what)))
