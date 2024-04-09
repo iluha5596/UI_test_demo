@@ -1,5 +1,4 @@
 import time
-
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from locators.card_product_locator import CardProductLocator
@@ -61,3 +60,28 @@ class CardProductPage(BasePage):
             self.add_cart()
         self.element_is_clickable(*CardProductLocator.ADD_TO_CARD)
         return dict_product
+
+    def adding_product_different_color(self, size, colors, count):
+        dict_product = None
+        generate_dict_product = GenerateDictProduct()
+        name_product = self.find_element(*CardProductLocator.NAME_PRODUCT).text
+        self.choose_size(size)
+        for color in colors:
+            self.choose_color(color)
+            selected_color = self.find_element(*CardProductLocator.SELECTED_COLOR).text
+            value_date_product = [name_product,
+                                  size,
+                                  selected_color,
+                                  count]
+            dict_product = generate_dict_product.add_value_in_dict(value_date_product)
+            self.add_cart()
+        self.element_is_clickable(*CardProductLocator.ADD_TO_CARD)
+        return dict_product
+
+    def adding_products_from_different_categories(self, size, color, count):
+        self.add_product(size, color, count)
+        value_date_product = [self.find_element(*CardProductLocator.NAME_PRODUCT).text,
+                              size,
+                              self.find_element(*CardProductLocator.SELECTED_COLOR).text,
+                              count]
+        return value_date_product

@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from locators.shopping_cart_locator import ShoppingCartLocator
-from data.generate_dict_product import GenerateDictProduct
 
 
 class ShoppingCart(BasePage):

@@ -4,6 +4,7 @@ from pages.shopping_cart import ShoppingCart
 from pages.main_page import MainPage
 from pages.men_page import MenPage
 from pages.products_list_page import ProductsListPage
+from data.generate_dict_product import GenerateDictProduct
 
 
 def passage_section_men_page(driver, url):
@@ -12,9 +13,15 @@ def passage_section_men_page(driver, url):
     main_page.click_men()
 
 
+def checking_correspondence_added_product_cart(added_items_cart_dict, data_shopping_cart_dict):
+    assert added_items_cart_dict == data_shopping_cart_dict, f'Продукты в корзине не соответствуют тем, что были добавлены.' \
+                                                             f'\nПродукты добавленные в корзину: {added_items_cart_dict}' \
+                                                             f'\nПродукты в корзине: {data_shopping_cart_dict}'
+
+
+@pytest.mark.check_cart
 class TestCheckCart:
 
-    @pytest.mark.skip
     def test_check_cart_tow_identical_products(self, driver):
         url = 'https://magento.softwaretestingboard.com/'
         passage_section_men_page(driver, url)
@@ -23,13 +30,11 @@ class TestCheckCart:
         products_list_page = ProductsListPage(driver)
         products_list_page.click_card_product_random()
         card_product_page = CardProductPage(driver)
-        added_items_cart = card_product_page.adding_two_identical_products(size='M', color=2, count='2')
+        added_items_cart_dict = card_product_page.adding_two_identical_products(size='M', color=2, count='2')
         card_product_page.go_shopping_cart()
         shopping_cart = ShoppingCart(driver)
         data_shopping_cart_dict = shopping_cart.add_shopping_cart_in_dict()
-        assert added_items_cart == data_shopping_cart_dict, f'Продукты в корзине не соответствуют тем, что были добавлены.' \
-                                                            f'\nПродукты добавленные в корзину: {added_items_cart}' \
-                                                            f'\nПродукты в корзине: {data_shopping_cart_dict}'
+        checking_correspondence_added_product_cart(added_items_cart_dict, data_shopping_cart_dict)
 
     def test_check_cart_products_different_sizes(self, driver):
         url = 'https://magento.softwaretestingboard.com/'
@@ -39,13 +44,46 @@ class TestCheckCart:
         products_list_page = ProductsListPage(driver)
         products_list_page.click_card_product_random()
         card_product_page = CardProductPage(driver)
-        added_items_cart = card_product_page.adding_products_different_sizes(sizes=['XS', 'S', 'M', 'L', 'XL'], color=0,
-                                                                             count='1')
+        added_items_cart_dict = card_product_page.adding_products_different_sizes(sizes=['XS', 'S', 'M', 'L', 'XL'],
+                                                                                  color=0,
+                                                                                  count='1')
         card_product_page.go_shopping_cart()
         shopping_cart = ShoppingCart(driver)
         data_shopping_cart_dict = shopping_cart.add_shopping_cart_in_dict()
-        assert added_items_cart == data_shopping_cart_dict, f'Продукты в корзине не соответствуют тем, что были добавлены.' \
-                                                            f'\nПродукты добавленные в корзину: {added_items_cart}' \
-                                                            f'\nПродукты в корзине: {data_shopping_cart_dict}'
+        checking_correspondence_added_product_cart(added_items_cart_dict, data_shopping_cart_dict)
 
+    def test_check_cart_products_different_color(self, driver):
+        url = 'https://magento.softwaretestingboard.com/'
+        passage_section_men_page(driver, url)
+        men_page = MenPage(driver)
+        men_page.click_tees()
+        products_list_page = ProductsListPage(driver)
+        products_list_page.click_card_product_random()
+        card_product_page = CardProductPage(driver)
+        added_items_cart_dict = card_product_page.adding_product_different_color(size='L', colors=[0, 1, 2], count='1')
+        card_product_page.go_shopping_cart()
+        shopping_cart = ShoppingCart(driver)
+        data_shopping_cart_dict = shopping_cart.add_shopping_cart_in_dict()
+        checking_correspondence_added_product_cart(added_items_cart_dict, data_shopping_cart_dict)
 
+    def test_checking_cart_with_one_product_from_each_category(self, driver):
+        url = 'https://magento.softwaretestingboard.com/'
+        added_items_cart_dict = GenerateDictProduct()
+        passage_section_men_page(driver, url)
+        men_page = MenPage(driver)
+        main_page = MainPage(driver)
+        go_categories = [men_page.click_hoodies_sweatshirts, men_page.click_jackets, men_page.click_tees,
+                         men_page.click_tanks]
+        counter = 0
+        for go_category in go_categories:
+            go_category()
+            products_list_page = ProductsListPage(driver)
+            dict_product = products_list_page.added_product_in_cart()
+            added_items_cart_dict.add_value_in_dict(dict_product)
+            counter += 1
+            if counter != len(go_categories):
+                main_page.go_men_category()
+        main_page.go_shopping_cart()
+        shopping_cart = ShoppingCart(driver)
+        data_shopping_cart_dict = shopping_cart.add_shopping_cart_in_dict()
+        checking_correspondence_added_product_cart(added_items_cart_dict.data, data_shopping_cart_dict)

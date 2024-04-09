@@ -5,4 +5,4 @@ class MainPageLocator:
     MEN = (By.XPATH, '//span[text()="Men"]')
     SHOW_CART = (By.XPATH, '//a[@class="action showcart"]')
     VIE_AND_EDIT_CART = (By.XPATH, '//span[text()="View and Edit Cart"]')
-    MEN_CATEGORY = (By.XPATH, '//a[text()="Men"]')
+    MEN_CATEGORY = (By.XPATH, '//li[@class="item category11"]//a')

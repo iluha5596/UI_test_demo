@@ -30,6 +30,9 @@ jobs:
       - name: smoke_test
         if: "github.event.inputs.deployment_target == 'smoke_test'"
         run: pytest -s -v -m smoke
+      - name: check_cart
+          if: "github.event.inputs.deployment_target == 'check_cart'"
+          run: pytest -s -v -m check_cart
       - name: regression_test
         if: "github.event.inputs.deployment_target == 'regression_test'"
         run: pytest -s -v
