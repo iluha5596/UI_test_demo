@@ -10,6 +10,7 @@ on:
         type: choice
         options:
           - smoke_test
+          - check_cart
           - regression_test
 
 jobs:
