@@ -8,10 +8,12 @@ class MainPage(BasePage):
         self.element_is_clickable(*MainPageLocator.MEN).click()
 
     def click_show_cart(self):
-        self.element_is_clickable(*MainPageLocator.SHOW_CART).click()
+        cart_button = self.visibility_of_element_locator(*MainPageLocator.SHOW_CART)
+        cart_button.click()
 
     def click_vie_and_edit_cart(self):
-        self.element_is_clickable(*MainPageLocator.VIE_AND_EDIT_CART).click()
+        edit_cart = self.visibility_of_element_locator(*MainPageLocator.VIE_AND_EDIT_CART)
+        edit_cart.click()
 
     def go_shopping_cart(self):
         self.click_show_cart()

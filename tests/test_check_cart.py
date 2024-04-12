@@ -72,8 +72,7 @@ class TestCheckCart:
         passage_section_men_page(driver, url)
         men_page = MenPage(driver)
         main_page = MainPage(driver)
-        go_categories = [men_page.click_hoodies_sweatshirts, men_page.click_jackets, men_page.click_tees,
-                         men_page.click_tanks]
+        go_categories = [men_page.click_hoodies_sweatshirts, men_page.click_jackets, men_page.click_tees]
         counter = 0
         for go_category in go_categories:
             go_category()

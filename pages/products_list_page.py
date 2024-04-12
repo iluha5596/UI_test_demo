@@ -1,8 +1,5 @@
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from locators.products_list_locator import ProductsListLocators
-import random
 
 
 class ProductsListPage(BasePage):
@@ -17,11 +14,8 @@ class ProductsListPage(BasePage):
         self.element_is_clickable(*ProductsListLocators.CARD_PRODUCT_COLOR).click()
 
     def click_add_to_cart(self):
-        element = self.find_element(*ProductsListLocators.CARD_PRODUCT_5)
-        actions = ActionChains(self.driver)
-        actions.move_to_element(element).perform()  # Наведение курсора на элемент
-        self.element_is_clickable(*ProductsListLocators.ADD_TO_CART).click()
-        self.element_is_clickable(*ProductsListLocators.ADD_TO_CART)
+        add_to_cart_button = self.presence_of_element_located(*ProductsListLocators.ADD_TO_CART)
+        self.driver.execute_script("arguments[0].click();", add_to_cart_button)
 
     def added_product_in_cart(self):
         self.click_card_product_size()
