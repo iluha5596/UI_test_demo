@@ -1,5 +1,6 @@
 from pages.base_page import BasePage
 from locators.main_page_locator import MainPageLocator
+import allure
 
 
 class MainPage(BasePage):
@@ -16,8 +17,9 @@ class MainPage(BasePage):
         edit_cart.click()
 
     def go_shopping_cart(self):
-        self.click_show_cart()
-        self.click_vie_and_edit_cart()
+        with allure.step('Проход в корзину через иконку корзины'):
+            self.click_show_cart()
+            self.click_vie_and_edit_cart()
 
     def go_men_category(self):
         self.element_is_clickable(*MainPageLocator.MEN_CATEGORY).click()

@@ -1,5 +1,6 @@
 from pages.base_page import BasePage
 from locators.panel_login_locator import PanelLogin
+import allure
 
 
 class LoginPanel(BasePage):
@@ -8,6 +9,7 @@ class LoginPanel(BasePage):
         self.element_is_clickable(*PanelLogin.SIGN_IN).click()
 
     def checking_user_authorization(self):
-        self.visibility_of_element_locator(*PanelLogin.LOGIN_IN)
-        user_authorization_element = self.find_element(*PanelLogin.LOGIN_IN)
-        assert user_authorization_element.is_displayed(), 'Авторизация не прошла'
+        with allure.step('Проверка, что авторизация прошла успешна'):
+            self.visibility_of_element_locator(*PanelLogin.LOGIN_IN)
+            user_authorization_element = self.find_element(*PanelLogin.LOGIN_IN)
+            assert user_authorization_element.is_displayed(), 'Авторизация не прошла'
