@@ -21,6 +21,7 @@ def checking_correspondence_added_product_cart(added_items_cart_dict, data_shopp
                                                                  f'\nПродукты в корзине: {data_shopping_cart_dict}'
 
 
+@pytest.mark.check_cart
 @allure.feature('Заполнение корзины')
 class TestCheckCart:
 
