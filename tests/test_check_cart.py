@@ -21,10 +21,11 @@ def checking_correspondence_added_product_cart(added_items_cart_dict, data_shopp
                                                                  f'\nПродукты в корзине: {data_shopping_cart_dict}'
 
 
-@pytest.mark.check_cart
+# @pytest.mark.check_cart
 @allure.feature('Заполнение корзины')
 class TestCheckCart:
 
+    @pytest.mark.check_cart
     @allure.title('Проверка корзины с двумя одинковыми продукми')
     def test_check_cart_tow_identical_products(self, driver):
         url = 'https://magento.softwaretestingboard.com/'
