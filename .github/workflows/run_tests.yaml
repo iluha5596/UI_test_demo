@@ -53,7 +53,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: screenshots
-          path: ${{ github.workspace }}/screenshots/*.png
+          path: allure-results/*.png
       - name: Store allure results
         uses: actions/upload-artifact@v3
         with:
