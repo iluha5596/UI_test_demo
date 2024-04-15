@@ -7,6 +7,7 @@ from pages.login_page import LoginPage
 import pytest
 
 
+@pytest.mark.check_authorization
 class TestAuthorization:
 
     @pytest.mark.smoke

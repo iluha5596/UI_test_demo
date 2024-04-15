@@ -26,7 +26,7 @@ class CardProductPage(BasePage):
 
     def go_shopping_cart(self):
         with allure.step('Проход в корзину через ссылку "shopping cart."'):
-            # self.visibility_of_element_locator(*CardProductLocator.ALERT)
+            self.visibility_of_element_locator(*CardProductLocator.ALERT)
             self.element_is_clickable(*CardProductLocator.SHOPPING_CART).click()
 
     def add_product(self, size, color, count):

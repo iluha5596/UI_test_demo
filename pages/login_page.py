@@ -2,6 +2,7 @@ from pages.base_page import BasePage
 from locators.login_page_locator import LoginPageLocator
 import allure
 
+
 class LoginPage(BasePage):
 
     def authorization_using_valid_pairs(self, creds):
@@ -36,5 +37,3 @@ class LoginPage(BasePage):
             error_text_email = self.find_element(*LoginPageLocator.ERROR_NON_VALID_EMAIL).text
             error_text_password = self.find_element(*LoginPageLocator.ERROR_NON_VALID_PASSWORD).text
             assert 'This is a required field.' == error_text_email and 'This is a required field.' == error_text_password
-
-
