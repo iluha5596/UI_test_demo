@@ -43,7 +43,7 @@ jobs:
       - name: check_cart
         if: "github.event.inputs.deployment_target == 'check_cart'"
         run: pytest -s -v -m check_cart --alluredir=allure-results
-        continue-on-error: true
+#        continue-on-error: true
       - name: regression_test
         if: "github.event.inputs.deployment_target == 'regression_test'"
         run: pytest -s -v --alluredir=allure-results
