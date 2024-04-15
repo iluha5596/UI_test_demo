@@ -31,7 +31,7 @@ jobs:
         with:
           python-version: "3.10"
       - name: Install Chrome
-        run: sudo apt-get install google-chrome-stable
+        run: sudo apt-get install google-chrome-stable=114.0.5735.134
       - name: install dependencies
         run: pip install -r requirements.txt
       - name: Download all workflow run artifacts
@@ -39,15 +39,12 @@ jobs:
       - name: smoke_test
         if: "github.event.inputs.deployment_target == 'smoke'"
         run: pytest -s -v -m smoke --alluredir=allure-results
-        continue-on-error: true
       - name: check_cart
         if: "github.event.inputs.deployment_target == 'check_cart'"
         run: pytest -s -v -m check_cart --alluredir=allure-results
-#        continue-on-error: true
       - name: regression_test
         if: "github.event.inputs.deployment_target == 'regression_test'"
         run: pytest -s -v --alluredir=allure-results
-        continue-on-error: true
       - name: Save screenshots as artifacts
         if: failure()
         uses: actions/upload-artifact@v3
